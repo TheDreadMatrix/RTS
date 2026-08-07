@@ -5,20 +5,32 @@ import com.returntosirandora.core.protocol.PathsInterface;
 import com.returntosirandora.core.protocol.RouterInterface;
 import com.returntosirandora.core.protocol.SceneInterface;
 
+import com.badlogic.gdx.scenes.scene2d.Stage;
+
 public class BaseScene implements SceneInterface {
+    String sceneName;
+
     ApplicationInterface game;
     PathsInterface paths;
     RouterInterface router;
 
-    public BaseScene(ApplicationInterface game) {
+    Stage stage;
+
+    public BaseScene _initScene(ApplicationInterface game, String sceneName) {
         this.game = game;
+        this.sceneName = sceneName;
+
         paths = game.getPaths();
         router = game.getRouter();
+
+        stage = new Stage();
+
+        return this;
 
     }
 
     @Override
-    public void create(ApplicationInterface game) {
+    public void create() {
 
     }
 
@@ -29,6 +41,16 @@ public class BaseScene implements SceneInterface {
 
     @Override
     public void resize(int width, int height) {
+        stage.getViewport().update(width, height, true);
+    }
+
+    @Override
+    public void pause() {
+
+    }
+
+    @Override
+    public void resume() {
 
     }
 

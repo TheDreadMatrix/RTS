@@ -7,6 +7,7 @@ import com.returntosirandora.core.protocol.ApplicationInterface;
 import com.returntosirandora.core.protocol.RouterInterface;
 import com.returntosirandora.core.protocol.SceneInterface;
 import com.returntosirandora.scenes.Menu;
+import com.returntosirandora.scenes.TestScene;
 
 public class RTSRouter implements RouterInterface {
 
@@ -18,10 +19,15 @@ public class RTSRouter implements RouterInterface {
     private String currentName;
     private String whichScene;
 
+    private void registerScene(String key, Supplier<SceneInterface> sceneFactory) {
+        sceneDict.put(key, sceneFactory);
+    }
+
     public RTSRouter(ApplicationInterface game) {
         this.game = game;
 
-        sceneDict.put("Menu", () -> new Menu(game));
+        registerScene("Menu", () -> new Menu()._initScene(game, currentName));
+        registerScene("Test", () -> new TestScene()._initScene(game, currentName));
 
     }
 
@@ -30,7 +36,8 @@ public class RTSRouter implements RouterInterface {
         currentName = StartScene;
 
         currentScene = sceneDict.get(currentName).get();
-        currentScene.create(game);
+
+        currentScene.create();
     }
 
     @Override
@@ -46,12 +53,13 @@ public class RTSRouter implements RouterInterface {
     public void update(float deltaTime) {
         String stateScene = currentName;
 
-        if (stateScene != whichScene) {
+        if (!stateScene.equals(whichScene)) {
             whichScene = stateScene;
             currentScene.end();
 
             currentScene = sceneDict.get(whichScene).get();
-            currentScene.create(game);
+
+            currentScene.create();
 
         }
 
@@ -60,6 +68,14 @@ public class RTSRouter implements RouterInterface {
 
     public void resize(int width, int height) {
         currentScene.resize(width, height);
+    }
+
+    public void pause() {
+        currentScene.pause();
+    }
+
+    public void resume() {
+        currentScene.resume();
     }
 
     public void render() {

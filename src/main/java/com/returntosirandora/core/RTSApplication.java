@@ -57,6 +57,16 @@ public class RTSApplication extends ApplicationAdapter implements ApplicationInt
     }
 
     @Override
+    public void pause() {
+        router.pause();
+    }
+
+    @Override
+    public void resume() {
+        router.resume();
+    }
+
+    @Override
     public void render() {
         router.update(Gdx.graphics.getDeltaTime());
 
