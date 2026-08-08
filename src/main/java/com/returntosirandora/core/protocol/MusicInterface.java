@@ -1,7 +1,7 @@
 package com.returntosirandora.core.protocol;
 
 public interface MusicInterface {
-    public void loadMusic(String musicPath, Boolean isLooping, float musicVolume);
+    public MusicInterface loadMusic(String musicPath, Boolean isLooping, float musicVolume);
 
     public void resumeOrPlay();
 

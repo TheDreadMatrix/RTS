@@ -31,7 +31,9 @@ public class RTSRouter implements RouterInterface {
 
     }
 
-    public void afterInit(String StartScene) {
+    public void afterInit() {
+        String StartScene = "Menu";
+
         whichScene = StartScene;
         currentName = StartScene;
 
@@ -56,6 +58,7 @@ public class RTSRouter implements RouterInterface {
         if (!stateScene.equals(whichScene)) {
             whichScene = stateScene;
             currentScene.end();
+            game.getAssets().clearSceneResources();
 
             currentScene = sceneDict.get(whichScene).get();
 

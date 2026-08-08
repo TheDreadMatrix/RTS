@@ -1,6 +1,7 @@
 package com.returntosirandora.scenes;
 
 import com.returntosirandora.core.protocol.ApplicationInterface;
+import com.returntosirandora.core.protocol.AssetsInterface;
 import com.returntosirandora.core.protocol.PathsInterface;
 import com.returntosirandora.core.protocol.RouterInterface;
 import com.returntosirandora.core.protocol.SceneInterface;
@@ -13,6 +14,7 @@ public class BaseScene implements SceneInterface {
     ApplicationInterface game;
     PathsInterface paths;
     RouterInterface router;
+    AssetsInterface assets;
 
     Stage stage;
 
@@ -22,8 +24,11 @@ public class BaseScene implements SceneInterface {
 
         paths = game.getPaths();
         router = game.getRouter();
+        assets = game.getAssets();
 
         stage = new Stage();
+
+        assets.beginScene(sceneName);
 
         return this;
 

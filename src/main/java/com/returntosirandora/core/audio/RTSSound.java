@@ -3,8 +3,9 @@ package com.returntosirandora.core.audio;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.files.FileHandle;
+import com.returntosirandora.core.protocol.SoundInterface;
 
-public class RTSSound {
+public class RTSSound implements SoundInterface {
     private Sound sound;
 
     public void load(FileHandle file) {

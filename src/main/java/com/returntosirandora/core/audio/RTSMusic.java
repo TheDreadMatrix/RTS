@@ -15,7 +15,7 @@ public class RTSMusic implements MusicInterface {
     }
 
     @Override
-    public void loadMusic(String fileName, Boolean isLooping, float musicVolume) {
+    public RTSMusic loadMusic(String fileName, Boolean isLooping, float musicVolume) {
 
         if (music != null) {
             music.stop();
@@ -25,6 +25,8 @@ public class RTSMusic implements MusicInterface {
         music = Gdx.audio.newMusic(game.getPaths().getMusic(fileName));
         music.setLooping(isLooping);
         music.setVolume(musicVolume);
+
+        return this;
 
     }
 

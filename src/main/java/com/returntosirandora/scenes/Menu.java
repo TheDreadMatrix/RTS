@@ -8,6 +8,9 @@ import com.badlogic.gdx.Input;
 public class Menu extends BaseScene {
 
     public void create() {
+        assets.regMusic("music-1", "distance.ogg", false);
+
+        assets.getMusic("music-1").resumeOrPlay();
 
         System.out.println(sceneName);
     }

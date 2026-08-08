@@ -6,7 +6,7 @@ import com.badlogic.gdx.Input;
 public class TestScene extends BaseScene {
 
     public void create() {
-
+        System.out.println(sceneName);
     }
 
     public void update(float deltaTime) {
