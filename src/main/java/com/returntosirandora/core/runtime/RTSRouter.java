@@ -3,11 +3,10 @@ package com.returntosirandora.core.runtime;
 import java.util.HashMap;
 import java.util.function.Supplier;
 
+import com.badlogic.gdx.Gdx;
 import com.returntosirandora.core.protocol.ApplicationInterface;
-import com.returntosirandora.core.protocol.RouterInterface;
 import com.returntosirandora.core.protocol.SceneInterface;
-import com.returntosirandora.scenes.Menu;
-import com.returntosirandora.scenes.TestScene;
+import com.returntosirandora.core.protocol.runtime.RouterInterface;
 
 public class RTSRouter implements RouterInterface {
 
@@ -16,23 +15,36 @@ public class RTSRouter implements RouterInterface {
 
     private final ApplicationInterface game;
 
+    private String StartScene;
     private String currentName;
     private String whichScene;
 
-    private void registerScene(String key, Supplier<SceneInterface> sceneFactory) {
-        sceneDict.put(key, sceneFactory);
+    private void registerScene(String key, String className) {
+        try {
+            Class<? extends SceneInterface> sceneClass = Class.forName(className).asSubclass(SceneInterface.class);
+            sceneDict.put(key, () -> {
+                try {
+                    return sceneClass.getDeclaredConstructor().newInstance()._initScene(game, key);
+                } catch (Exception exception) {
+                    throw new RuntimeException("Failed to create scene: " + className, exception);
+                }
+            });
+        } catch (ClassNotFoundException e) {
+            Gdx.app.error("ERROR", "Class not found", e);
+        }
     }
 
     public RTSRouter(ApplicationInterface game) {
         this.game = game;
 
-        registerScene("Menu", () -> new Menu()._initScene(game, currentName));
-        registerScene("Test", () -> new TestScene()._initScene(game, currentName));
+        StartScene = "Menu";
+
+        registerScene("Menu", "com.returntosirandora.scenes.Menu");
+        registerScene("Test", "com.returntosirandora.scenes.TestScene");
 
     }
 
     public void afterInit() {
-        String StartScene = "Menu";
 
         whichScene = StartScene;
         currentName = StartScene;
@@ -58,7 +70,6 @@ public class RTSRouter implements RouterInterface {
         if (!stateScene.equals(whichScene)) {
             whichScene = stateScene;
             currentScene.end();
-            game.getAssets().clearSceneResources();
 
             currentScene = sceneDict.get(whichScene).get();
 

@@ -1,6 +1,6 @@
 package com.returntosirandora.core.protocol;
 
-import com.returntosirandora.core.runtime.RTSAssets;
+import com.badlogic.gdx.assets.AssetManager;
 import com.returntosirandora.core.runtime.RTSPath;
 import com.returntosirandora.core.runtime.RTSRouter;
 
@@ -9,5 +9,5 @@ public interface ApplicationInterface {
 
     public RTSRouter getRouter();
 
-    public RTSAssets getAssets();
+    public AssetManager getAssets();
 }

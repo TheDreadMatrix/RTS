@@ -1,11 +1,12 @@
 package com.returntosirandora.core;
 
-import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.GL32;
+import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.backends.lwjgl3.Lwjgl3ApplicationConfiguration;
+import com.badlogic.gdx.assets.AssetManager;
+import com.badlogic.gdx.utils.ScreenUtils;
+
 import com.returntosirandora.core.protocol.ApplicationInterface;
-import com.returntosirandora.core.runtime.RTSAssets;
 import com.returntosirandora.core.runtime.RTSPath;
 import com.returntosirandora.core.runtime.RTSRouter;
 import com.returntosirandora.Johnson.MrProper;
@@ -14,7 +15,7 @@ public class RTSApplication extends ApplicationAdapter implements ApplicationInt
 
     public RTSPath paths;
     public RTSRouter router;
-    public RTSAssets assets;
+    public AssetManager assets;
 
     public static Lwjgl3ApplicationConfiguration _giveConfiguration() {
         MrProper game_settings = new MrProper("settings.properties");
@@ -45,7 +46,7 @@ public class RTSApplication extends ApplicationAdapter implements ApplicationInt
     }
 
     @Override
-    public RTSAssets getAssets() {
+    public AssetManager getAssets() {
         return assets;
     }
 
@@ -53,7 +54,7 @@ public class RTSApplication extends ApplicationAdapter implements ApplicationInt
     public void create() {
 
         paths = new RTSPath();
-        assets = new RTSAssets(this);
+        assets = new AssetManager();
 
         router = new RTSRouter(this);
         router.afterInit();
@@ -79,8 +80,7 @@ public class RTSApplication extends ApplicationAdapter implements ApplicationInt
     public void render() {
         router.update(Gdx.graphics.getDeltaTime());
 
-        Gdx.gl.glClearColor(0, 0, 0, 1);
-        Gdx.gl.glClear(GL32.GL_COLOR_BUFFER_BIT);
+        ScreenUtils.clear(0, 0, 0, 1);
 
         router.render();
 
@@ -88,7 +88,7 @@ public class RTSApplication extends ApplicationAdapter implements ApplicationInt
 
     @Override
     public void dispose() {
-
+        assets.dispose();
     }
 
 }

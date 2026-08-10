@@ -1,12 +1,11 @@
 package com.returntosirandora.scenes;
 
 import com.returntosirandora.core.protocol.ApplicationInterface;
-import com.returntosirandora.core.protocol.AssetsInterface;
-import com.returntosirandora.core.protocol.PathsInterface;
-import com.returntosirandora.core.protocol.RouterInterface;
 import com.returntosirandora.core.protocol.SceneInterface;
+import com.returntosirandora.core.protocol.runtime.PathsInterface;
+import com.returntosirandora.core.protocol.runtime.RouterInterface;
 
-import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.assets.AssetManager;
 
 public class BaseScene implements SceneInterface {
     String sceneName;
@@ -14,9 +13,8 @@ public class BaseScene implements SceneInterface {
     ApplicationInterface game;
     PathsInterface paths;
     RouterInterface router;
-    AssetsInterface assets;
 
-    Stage stage;
+    AssetManager assets;
 
     public BaseScene _initScene(ApplicationInterface game, String sceneName) {
         this.game = game;
@@ -25,10 +23,6 @@ public class BaseScene implements SceneInterface {
         paths = game.getPaths();
         router = game.getRouter();
         assets = game.getAssets();
-
-        stage = new Stage();
-
-        assets.beginScene(sceneName);
 
         return this;
 
@@ -46,7 +40,6 @@ public class BaseScene implements SceneInterface {
 
     @Override
     public void resize(int width, int height) {
-        stage.getViewport().update(width, height, true);
     }
 
     @Override

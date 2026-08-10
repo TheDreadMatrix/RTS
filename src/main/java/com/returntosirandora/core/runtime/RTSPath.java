@@ -2,7 +2,7 @@ package com.returntosirandora.core.runtime;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.files.FileHandle;
-import com.returntosirandora.core.protocol.PathsInterface;
+import com.returntosirandora.core.protocol.runtime.PathsInterface;
 
 public class RTSPath implements PathsInterface {
 
@@ -29,7 +29,7 @@ public class RTSPath implements PathsInterface {
     }
 
     @Override
-    public FileHandle getTexture(String path) {
+    public FileHandle getImages(String path) {
         return assets.child("images").child(path);
     }
 

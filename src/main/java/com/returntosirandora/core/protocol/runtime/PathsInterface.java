@@ -1,4 +1,4 @@
-package com.returntosirandora.core.protocol;
+package com.returntosirandora.core.protocol.runtime;
 
 import com.badlogic.gdx.files.FileHandle;
 
@@ -9,7 +9,7 @@ public interface PathsInterface {
 
     public FileHandle getShader(String path);
 
-    public FileHandle getTexture(String path);
+    public FileHandle getImages(String path);
 
     public FileHandle getFont(String path);
 
