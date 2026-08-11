@@ -10,4 +10,6 @@ public interface ApplicationInterface {
     public RTSRouter getRouter();
 
     public AssetManager getAssets();
+
+    public void clear(float r, float g, float b);
 }

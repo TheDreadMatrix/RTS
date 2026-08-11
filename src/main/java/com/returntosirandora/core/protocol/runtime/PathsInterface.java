@@ -14,4 +14,6 @@ public interface PathsInterface {
     public FileHandle getFont(String path);
 
     public FileHandle getSound(String path);
+
+    public FileHandle _forInternal(String path);
 }

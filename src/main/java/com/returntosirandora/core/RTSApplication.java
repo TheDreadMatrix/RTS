@@ -9,7 +9,7 @@ import com.badlogic.gdx.utils.ScreenUtils;
 import com.returntosirandora.core.protocol.ApplicationInterface;
 import com.returntosirandora.core.runtime.RTSPath;
 import com.returntosirandora.core.runtime.RTSRouter;
-import com.returntosirandora.Johnson.MrProper;
+import com.returntosirandora.Johnson;
 
 public class RTSApplication extends ApplicationAdapter implements ApplicationInterface {
 
@@ -18,18 +18,23 @@ public class RTSApplication extends ApplicationAdapter implements ApplicationInt
     public AssetManager assets;
 
     public static Lwjgl3ApplicationConfiguration _giveConfiguration() {
-        MrProper game_settings = new MrProper("settings.properties");
 
         // Creating configuration
+        Johnson josh = new Johnson("config/settings.json").loadData();
+
         Lwjgl3ApplicationConfiguration config = new Lwjgl3ApplicationConfiguration();
 
-        config.setWindowIcon("assets/icon.png");
         config.setTitle("Return to Sirandora");
-        config.setWindowedMode(game_settings.getInt("window.width", 800), game_settings.getInt("window.height", 600));
-        config.setForegroundFPS(game_settings.getInt("window.fps", 60));
-        config.useVsync(game_settings.getBoolean("window.vsync", false));
-        config.setIdleFPS(10);
+        config.setWindowIcon("assets/icon.png");
+
+        config.setPauseWhenLostFocus(false);
+
+        config.setWindowedMode(josh.getInt("window.width", 800), josh.getInt("window.height", 600));
         config.setWindowSizeLimits(799, 599, 10000, 10000);
+
+        config.setIdleFPS(10);
+        config.setForegroundFPS(josh.getInt("window.fps", 60));
+        config.useVsync(josh.getBoolean("window.vsync", false));
 
         return config;
     }
@@ -69,6 +74,11 @@ public class RTSApplication extends ApplicationAdapter implements ApplicationInt
     @Override
     public void pause() {
         router.pause();
+    }
+
+    @Override
+    public void clear(float r, float g, float b) {
+        ScreenUtils.clear(r, g, b, 1.0f);
     }
 
     @Override

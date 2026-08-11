@@ -14,6 +14,11 @@ public class RTSPath implements PathsInterface {
     }
 
     @Override
+    public FileHandle _forInternal(String path) {
+        return assets.child("_internal").child(path);
+    }
+
+    @Override
     public FileHandle getMaps(String path) {
         return assets.child("maps").child(path);
     }

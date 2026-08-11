@@ -1,9 +1,13 @@
 package com.returntosirandora.core.runtime;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.function.Supplier;
 
 import com.badlogic.gdx.Gdx;
+import com.returntosirandora.Johnson;
 import com.returntosirandora.core.protocol.ApplicationInterface;
 import com.returntosirandora.core.protocol.SceneInterface;
 import com.returntosirandora.core.protocol.runtime.RouterInterface;
@@ -14,6 +18,8 @@ public class RTSRouter implements RouterInterface {
     private SceneInterface currentScene;
 
     private final ApplicationInterface game;
+
+    private List<String> allScenes = new ArrayList<>();
 
     private String StartScene;
     private String currentName;
@@ -29,6 +35,9 @@ public class RTSRouter implements RouterInterface {
                     throw new RuntimeException("Failed to create scene: " + className, exception);
                 }
             });
+
+            allScenes.add(key);
+
         } catch (ClassNotFoundException e) {
             Gdx.app.error("ERROR", "Class not found", e);
         }
@@ -37,10 +46,18 @@ public class RTSRouter implements RouterInterface {
     public RTSRouter(ApplicationInterface game) {
         this.game = game;
 
-        StartScene = "Menu";
+        Johnson joshua = new Johnson(game.getPaths()._forInternal("scenes.json")).loadData();
 
-        registerScene("Menu", "com.returntosirandora.scenes.Menu");
-        registerScene("Test", "com.returntosirandora.scenes.TestScene");
+        StartScene = joshua.getString("StartScene");
+
+        Map<?, ?> scenes = joshua.getDict("Scenes");
+
+        for (Map.Entry<?, ?> entry : scenes.entrySet()) {
+            String key = (String) entry.getKey();
+            String value = (String) entry.getValue();
+
+            registerScene(key, value);
+        }
 
     }
 
@@ -62,6 +79,11 @@ public class RTSRouter implements RouterInterface {
     @Override
     public String getName() {
         return currentName;
+    }
+
+    @Override
+    public List<String> getAllScenes() {
+        return allScenes;
     }
 
     public void update(float deltaTime) {

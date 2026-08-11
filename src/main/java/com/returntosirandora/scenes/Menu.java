@@ -1,17 +1,15 @@
 package com.returntosirandora.scenes;
 
-import com.badlogic.gdx.utils.ScreenUtils;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
-import com.badlogic.gdx.assets.AssetDescriptor;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShaderProgram;
+import com.badlogic.gdx.utils.viewport.FitViewport;
 
 public class Menu extends BaseScene {
 
@@ -21,20 +19,12 @@ public class Menu extends BaseScene {
     Sprite sprite;
     Sprite sprite2;
 
+    FitViewport viewport;
+
     ShaderProgram shader;
     OrthographicCamera camera;
 
-    private AssetDescriptor<Music> MENU_MUSIC;
-
     public void create() {
-        MENU_MUSIC = new AssetDescriptor<>(paths.getMusic("menu.ogg").path(), Music.class);
-
-        // Assets
-        assets.load(MENU_MUSIC);
-        assets.finishLoading();
-        Music music = assets.get(MENU_MUSIC);
-        music.setLooping(true);
-        music.play();
 
         // Runtime render
         batch = new SpriteBatch();
@@ -54,13 +44,18 @@ public class Menu extends BaseScene {
         camera.setToOrtho(true, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
         camera.update();
 
-        Gdx.app.log("TEST", sceneName);
+        Music music = assets.get(paths.getMusic("menu.ogg").path(), Music.class);
+        music.play();
+
+        viewport = new FitViewport(Gdx.graphics.getWidth(), Gdx.graphics.getHeight(), camera);
 
     }
 
     public void resize(int width, int height) {
         camera.setToOrtho(true, width, height);
         camera.update();
+
+        viewport.update(width, height, true);
     }
 
     public void update(float deltaTime) {
@@ -71,10 +66,12 @@ public class Menu extends BaseScene {
     }
 
     public void render() {
-        ScreenUtils.clear(Color.RED);
+        game.clear(1, 0, 0);
 
         camera.update();
-        batch.setProjectionMatrix(camera.combined);
+        viewport.apply();
+
+        batch.setProjectionMatrix(viewport.getCamera().combined);
         batch.setShader(shader);
 
         batch.begin();
@@ -89,7 +86,7 @@ public class Menu extends BaseScene {
     }
 
     public void end() {
-        assets.unload(MENU_MUSIC.fileName);
+        assets.unload(paths.getMusic("menu.ogg").path());
 
         shader.dispose();
         texture.dispose();
