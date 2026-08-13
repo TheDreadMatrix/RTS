@@ -1,96 +1,84 @@
 package com.returntosirandora.scenes;
 
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Input;
-import com.badlogic.gdx.audio.Music;
-import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
+
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.graphics.glutils.ShaderProgram;
-import com.badlogic.gdx.utils.viewport.FitViewport;
+
+import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+
+import com.badlogic.gdx.scenes.scene2d.ui.Image;
+import com.badlogic.gdx.scenes.scene2d.ui.Label;
+import com.badlogic.gdx.scenes.scene2d.ui.Label.LabelStyle;
+import com.badlogic.gdx.scenes.scene2d.ui.Skin;
+import com.badlogic.gdx.scenes.scene2d.ui.Slider;
+import com.badlogic.gdx.scenes.scene2d.ui.Slider.SliderStyle;
+import com.badlogic.gdx.scenes.scene2d.ui.Table;
+import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
+import com.returntosirandora.utils.TrueTypeFont;
 
 public class Menu extends BaseScene {
 
-    Texture texture;
-    TextureRegion textureReg;
-    SpriteBatch batch;
-    Sprite sprite;
-    Sprite sprite2;
+    Table table;
 
-    FitViewport viewport;
+    BitmapFont font;
 
-    ShaderProgram shader;
-    OrthographicCamera camera;
-
+    @Override
     public void create() {
+        font = TrueTypeFont.getFont(paths.getFont("PixelFont.ttf"), 32, 2, Color.WHITE, Color.BLACK);
 
-        // Runtime render
-        batch = new SpriteBatch();
+        table = new Table();
+        table.setFillParent(true);
 
-        texture = new Texture(paths.getImages("icon-region.png"));
-        textureReg = new TextureRegion(texture, 197, 282, 183, 212);
+        Skin skin = new Skin();
+        TextureAtlas atlas = new TextureAtlas(paths.getImages("atlas/icons.atlas").path());
 
-        sprite = new Sprite(texture);
-        sprite.flip(false, true);
+        SliderStyle sliderSt = new SliderStyle();
 
-        sprite2 = new Sprite(textureReg);
-        sprite2.flip(false, true);
+        sliderSt.background = new TextureRegionDrawable(new Texture(paths.getImages("ui/bg-slider.png")));
+        sliderSt.knob = new TextureRegionDrawable(new Texture(paths.getImages("ui/knob-slider.png")));
 
-        shader = new ShaderProgram(paths.getShader("basic.vert"), paths.getShader("basic.frag"));
+        LabelStyle labelSt = new LabelStyle();
 
-        camera = new OrthographicCamera();
-        camera.setToOrtho(true, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
-        camera.update();
+        labelSt.font = font;
 
-        Music music = assets.get(paths.getMusic("menu.ogg").path(), Music.class);
-        music.play();
+        skin.add("myStyle", sliderSt);
+        skin.add("myStyle", labelSt);
 
-        viewport = new FitViewport(Gdx.graphics.getWidth(), Gdx.graphics.getHeight(), camera);
+        Image image = new Image(atlas.findRegion("algol-icon-2026"));
+
+        Label label = new Label("Hello", skin, "myStyle");
+        Slider slider = new Slider(0, 100, 1, false, skin, "myStyle");
+
+        table.add(label);
+        table.row();
+        table.add(image);
+        table.row();
+        table.add(slider).width(300).height(30);
+
+        mainStage.addActor(table);
 
     }
 
-    public void resize(int width, int height) {
-        camera.setToOrtho(true, width, height);
-        camera.update();
-
-        viewport.update(width, height, true);
-    }
-
+    @Override
     public void update(float deltaTime) {
-
-        if (Gdx.input.isKeyJustPressed(Input.Keys.W))
-            router.redirectingTo("Test");
-
+        super.update(deltaTime);
     }
 
+    @Override
+    public void resize(int width, int height) {
+        super.resize(width, height);
+    }
+
+    @Override
     public void render() {
-        game.clear(1, 0, 0);
+        super.render();
 
-        camera.update();
-        viewport.apply();
-
-        batch.setProjectionMatrix(viewport.getCamera().combined);
-        batch.setShader(shader);
-
-        batch.begin();
-
-        sprite.setPosition(0, 0);
-        sprite.draw(batch);
-
-        sprite2.setPosition(100, 100);
-        sprite2.draw(batch);
-
-        batch.end();
     }
 
+    @Override
     public void end() {
-        assets.unload(paths.getMusic("menu.ogg").path());
-
-        shader.dispose();
-        texture.dispose();
-        batch.dispose();
-
+        super.end();
+        font.dispose();
     }
 }

@@ -1,0 +1,8 @@
+{
+    "com.badlogic.gdx.scenes.scene2d.ui.Slider$SliderStyle": {
+         "default": {
+            "background": "slider-bg",
+            "knob": "slider-knob"
+        }
+    }
+}

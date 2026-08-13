@@ -90,7 +90,7 @@ public class RTSApplication extends ApplicationAdapter implements ApplicationInt
     public void render() {
         router.update(Gdx.graphics.getDeltaTime());
 
-        ScreenUtils.clear(0, 0, 0, 1);
+        ScreenUtils.clear(0.5f, 0.5f, 0.5f, 1);
 
         router.render();
 

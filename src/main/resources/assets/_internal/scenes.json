@@ -1,13 +1,13 @@
 {
-    "StartScene": "Loading",
+    "StartScene": "Menu",
     "Scenes": {
-        "Loading": "com.returntosirandora.scenes.LoadingScene",
+       
         "Menu": "com.returntosirandora.scenes.Menu",
 
-        "GameLocal": "com.returntosirandora.scenes.BaseScene",
-        "GameOne": "com.returntosirandora.scenes.BaseScene",
+        "LoadingGame": "com.returntosirandora.scenes.LoadingScene$LoadingGame",
+        "LoadingMenu": "com.returntosirandora.scenes.LoadingScene$LoadingMenu",
 
-        "Test": "com.returntosirandora.scenes.TestScene"
-        
+        "GamePlay": "com.returntosirandora.scenes.GamePlay"
+
     }
 }  
