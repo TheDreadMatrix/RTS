@@ -1,4 +1,4 @@
-package com.returntosirandora.tools;
+package tools;
 
 import com.badlogic.gdx.graphics.Texture;
 

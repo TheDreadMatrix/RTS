@@ -9,12 +9,15 @@ import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
+import com.badlogic.gdx.scenes.scene2d.ui.ScrollPane;
 import com.badlogic.gdx.scenes.scene2d.ui.Label.LabelStyle;
+import com.badlogic.gdx.scenes.scene2d.ui.ScrollPane.ScrollPaneStyle;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Slider;
 import com.badlogic.gdx.scenes.scene2d.ui.Slider.SliderStyle;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
+import com.returntosirandora.characters.content.Characters;
 import com.returntosirandora.utils.TrueTypeFont;
 
 public class Menu extends BaseScene {
@@ -29,6 +32,7 @@ public class Menu extends BaseScene {
 
         table = new Table();
         table.setFillParent(true);
+        table.center();
 
         Skin skin = new Skin();
         TextureAtlas atlas = new TextureAtlas(paths.getImages("atlas/icons.atlas").path());
@@ -48,11 +52,10 @@ public class Menu extends BaseScene {
         Image image = new Image(atlas.findRegion("algol-icon-2026"));
 
         Label label = new Label("Hello", skin, "myStyle");
+        label.setPosition(200, 200);
         Slider slider = new Slider(0, 100, 1, false, skin, "myStyle");
 
-        table.add(label);
-        table.row();
-        table.add(image);
+        table.add(image).padLeft(100).width(200).height(200);
         table.row();
         table.add(slider).width(300).height(30);
 

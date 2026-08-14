@@ -3,6 +3,12 @@ plugins {
     application
 }
 
+sourceSets {
+    create("tools") {
+        java.srcDir("src/tools/src/main/java")
+    }
+}
+
 
 repositories {
     mavenCentral()
@@ -19,16 +25,12 @@ dependencies {
     implementation("com.badlogicgames.gdx:gdx-freetype-platform:1.13.5:natives-desktop")
 
     runtimeOnly("com.badlogicgames.gdx:gdx-platform:1.13.5:natives-desktop")
+
+    add("toolsImplementation", "com.badlogicgames.gdx:gdx:1.13.5")
+    add("toolsImplementation", "com.badlogicgames.gdx:gdx-tools:1.13.5")
 }
 
 
-tasks.withType<JavaCompile> {
-    options.encoding = "UTF-8"
-}
-
-tasks.withType<JavaExec>().configureEach {
-    jvmArgs("-Dfile.encoding=UTF-8")
-}
 
 application {
     mainClass.set("Main")
@@ -38,6 +40,8 @@ tasks.register<JavaExec>("packTextures") {
     group = "assets"
     description = "Packs PNG textures into a LibGDX TextureAtlas"
 
-    classpath = sourceSets["main"].runtimeClasspath
-    mainClass.set("com.returntosirandora.tools.TexturePackerTool")
+    dependsOn("toolsClasses")
+
+    classpath = sourceSets["tools"].runtimeClasspath
+    mainClass.set("tools.TexturePackerTool")
 }

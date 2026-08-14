@@ -1,0 +1,160 @@
+package com.returntosirandora.characters.content;
+
+import com.returntosirandora.characters.CharacterDescription;
+import com.returntosirandora.characters.CharacterDescription.CharacterClass;
+import com.returntosirandora.characters.CharacterDescription.CharacterRarity;
+import com.returntosirandora.characters.CharacterDescription.CharacterType;
+import com.returntosirandora.characters.titles.Titles;
+
+/*
+Return to Sirandora characters
+
+Character:
+        name 
+        description
+
+        speed - current speed
+        speedUp - speed with Key Shift
+        stamina - stamina for running
+        class - Which class for Character
+        type - Who is it? Killer or Survival
+        title - Title for battle card
+        skins - skins for character
+
+Killers: 
+        1. Fred - common
+        2. Xor, Trevor, Rayan - rare
+        3. UltH, Redis, Nullean, Projectile - epic
+        4. Algol, DreadMatrix - legendary
+
+
+*/
+public class Characters {
+        public static final CharacterDescription FRED = new CharacterDescription.Builder()
+                        .name("Fred")
+                        .description("Fred")
+                        .health(1000)
+                        .speed(150)
+                        .speedUp(230)
+                        .stamina(120)
+                        .characterClass(CharacterClass.ASSASIN)
+                        .characterType(CharacterType.KILLER)
+                        .rarity(CharacterRarity.COMMON)
+                        .title(Titles.TILTE_FRED_0)
+                        .build();
+
+        public static final CharacterDescription RAYAN = new CharacterDescription.Builder()
+                        .name("Rayan")
+                        .description("Rayan")
+                        .speed(150)
+                        .speed(250)
+                        .stamina(150)
+                        .characterClass(CharacterClass.ASSASIN)
+                        .characterType(CharacterType.KILLER)
+                        .rarity(CharacterRarity.RARE)
+                        .title(Titles.TITLE_RAYAN_0)
+                        .build();
+
+        public static final CharacterDescription TREVOR = new CharacterDescription.Builder()
+                        .name("Trevor")
+                        .description("Asm")
+                        .speed(130)
+                        .speedUp(200)
+                        .stamina(100)
+                        .characterClass(CharacterClass.HYBRID)
+                        .characterType(CharacterType.KILLER)
+                        .rarity(CharacterRarity.RARE)
+                        .title(Titles.TITLE_TREVOR_0)
+                        .build();
+
+        public static final CharacterDescription XOR = new CharacterDescription.Builder()
+                        .name("Xor")
+                        .description("Xor")
+                        .speed(150)
+                        .speedUp(200)
+                        .stamina(150)
+                        .characterClass(CharacterClass.CONTROLLER)
+                        .characterType(CharacterType.KILLER)
+                        .rarity(CharacterRarity.RARE)
+                        .title(Titles.TITLE_XOR_0)
+                        .build();
+
+        public static final CharacterDescription NULLEAN = new CharacterDescription.Builder()
+                        .name("Nullean")
+                        .description("Nullean")
+                        .health(1700)
+                        .speed(120)
+                        .speedUp(160)
+                        .stamina(80)
+                        .characterClass(CharacterClass.TANK)
+                        .characterType(CharacterType.KILLER)
+                        .rarity(CharacterRarity.EPIC)
+                        .title(Titles.TITLE_NULLEAN_0)
+                        .build();
+
+        public static final CharacterDescription REDIS = new CharacterDescription.Builder()
+                        .name("Redis")
+                        .description("Redis")
+                        .health(800)
+                        .speed(200)
+                        .speedUp(300)
+                        .stamina(200)
+                        .characterClass(CharacterClass.HYBRID)
+                        .characterType(CharacterType.KILLER)
+                        .rarity(CharacterRarity.EPIC)
+                        .title(Titles.TITLE_REDIS_0)
+                        .build();
+
+        public static final CharacterDescription ULTH = new CharacterDescription.Builder()
+                        .name("UltH")
+                        .description("UltH")
+                        .health(1500)
+                        .speed(150)
+                        .speedUp(180)
+                        .stamina(80)
+                        .characterClass(CharacterClass.MARKSMAN)
+                        .characterType(CharacterType.KILLER)
+                        .rarity(CharacterRarity.EPIC)
+                        .title(Titles.TITLE_ULTH_0)
+                        .build();
+
+        public static final CharacterDescription PROJECTILE = new CharacterDescription.Builder()
+                        .name("Projectile")
+                        .description("Projectile")
+                        .health(1500)
+                        .speed(170)
+                        .speedUp(200)
+                        .stamina(150)
+                        .characterClass(CharacterClass.CONTROLLER)
+                        .characterType(CharacterType.KILLER)
+                        .rarity(CharacterRarity.EPIC)
+                        .title(Titles.TITLE_PROJECTILE_0)
+                        .build();
+
+        public static final CharacterDescription DREAD_MATRIX = new CharacterDescription.Builder()
+                        .name("The Dread Matrix")
+                        .description("DreadMatrix")
+                        .health(1200)
+                        .speed(170)
+                        .speedUp(230)
+                        .stamina(120)
+                        .characterClass(CharacterClass.HYBRID)
+                        .characterType(CharacterType.KILLER)
+                        .rarity(CharacterRarity.LEGENDARY)
+                        .title(Titles.TITLE_DREAD_MATRIX_0)
+                        .build();
+
+        public static final CharacterDescription ALGOL = new CharacterDescription.Builder()
+                        .name("Algol")
+                        .description("Algol")
+                        .health(2000)
+                        .speed(95)
+                        .speedUp(110)
+                        .stamina(150)
+                        .characterClass(CharacterClass.TANK)
+                        .characterType(CharacterType.KILLER)
+                        .rarity(CharacterRarity.LEGENDARY)
+                        .title(Titles.TITLE_ALGOL_0)
+                        .build();
+
+}
