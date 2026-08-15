@@ -1,10 +1,11 @@
 package com.returntosirandora.characters.content;
 
-import com.returntosirandora.characters.CharacterDescription;
-import com.returntosirandora.characters.CharacterDescription.CharacterClass;
-import com.returntosirandora.characters.CharacterDescription.CharacterRarity;
-import com.returntosirandora.characters.CharacterDescription.CharacterType;
-import com.returntosirandora.characters.titles.Titles;
+import com.returntosirandora.characters.defenition.CharacterDescription;
+import com.returntosirandora.characters.defenition.CharacterDescription.CharacterClass;
+import com.returntosirandora.characters.defenition.CharacterDescription.CharacterRarity;
+import com.returntosirandora.characters.defenition.CharacterDescription.CharacterType;
+import com.returntosirandora.characters.defenition.CharacterAsset;
+import com.returntosirandora.titles.Titles;
 
 /*
 Return to Sirandora characters
@@ -28,8 +29,23 @@ Killers:
         4. Algol, DreadMatrix - legendary
 
 
+Survivals:
+        1. Maven - common
+        2. Will, Groovy - rare
+        3. Summon, Lumi, Julian - epic
+        4. OmniRest - legendary
+
+
+Defenders:
+        1. Hank - rare
+        2. Deimos - rare
+        3. Sylvestr - epic
+        4. 
+
+
 */
 public class Characters {
+        // Killers
         public static final CharacterDescription FRED = new CharacterDescription.Builder()
                         .name("Fred")
                         .description("Fred")
@@ -41,6 +57,8 @@ public class Characters {
                         .characterType(CharacterType.KILLER)
                         .rarity(CharacterRarity.COMMON)
                         .title(Titles.TILTE_FRED_0)
+                        .skins(CharacterSkins.FRED_SKINS)
+                        .asset(new CharacterAsset("atlas/killers/fred/", "portrait/killers/fred/"))
                         .build();
 
         public static final CharacterDescription RAYAN = new CharacterDescription.Builder()
@@ -99,7 +117,7 @@ public class Characters {
                         .speed(200)
                         .speedUp(300)
                         .stamina(200)
-                        .characterClass(CharacterClass.HYBRID)
+                        .characterClass(CharacterClass.ASSASIN)
                         .characterType(CharacterType.KILLER)
                         .rarity(CharacterRarity.EPIC)
                         .title(Titles.TITLE_REDIS_0)
@@ -157,4 +175,43 @@ public class Characters {
                         .title(Titles.TITLE_ALGOL_0)
                         .build();
 
+        // Defenders
+        public static final CharacterDescription HANK = new CharacterDescription.Builder()
+                        .name("Hank")
+                        .description("Hank")
+                        .health(2000)
+                        .speed(120)
+                        .speedUp(150)
+                        .stamina(150)
+                        .characterClass(CharacterClass.TANK)
+                        .characterType(CharacterType.DEFENDER)
+                        .rarity(CharacterRarity.COMMON)
+                        .title(Titles.TITLE_HANK_0)
+                        .build();
+
+        public static final CharacterDescription DEIMOS = new CharacterDescription.Builder()
+                        .name("Deimos")
+                        .description("Deimos")
+                        .health(1800)
+                        .speed(150)
+                        .speedUp(190)
+                        .stamina(150)
+                        .characterClass(CharacterClass.MARKSMAN)
+                        .characterType(CharacterType.DEFENDER)
+                        .rarity(CharacterRarity.RARE)
+                        .title(Titles.TITLE_DEIMOS_0)
+                        .build();
+
+        public static final CharacterDescription SYLVESTR = new CharacterDescription.Builder()
+                        .name("Sylvestr")
+                        .description("Sylvestr")
+                        .health(2500)
+                        .speed(130)
+                        .speedUp(165)
+                        .stamina(150)
+                        .characterClass(CharacterClass.TANK)
+                        .characterType(CharacterType.DEFENDER)
+                        .rarity(CharacterRarity.EPIC)
+                        .title(Titles.TITLE_SYLVESTR_0)
+                        .build();
 }

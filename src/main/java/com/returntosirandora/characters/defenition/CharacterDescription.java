@@ -1,57 +1,102 @@
-package com.returntosirandora.characters;
+package com.returntosirandora.characters.defenition;
 
 import java.util.List;
-import java.util.ArrayList;
 
-import com.returntosirandora.characters.titles.Title;
+import com.returntosirandora.titles.Title;
+
+import java.util.ArrayList;
 
 public class CharacterDescription {
     public static enum CharacterRarity {
-        COMMON,
-        RARE,
-        EPIC,
-        LEGENDARY
+        COMMON("Common", "Common Rarity"),
+        RARE("Rare", "Rare Rarity"),
+        EPIC("Epic", "Epic Rarity"),
+        LEGENDARY("Legendary", "Legendary Rarity");
+
+        private String rarityName;
+        private String rarityDesc;
+
+        CharacterRarity(String rarityName, String rarityDesc) {
+            this.rarityName = rarityName;
+            this.rarityDesc = rarityDesc;
+        }
+
+        public String getDisplayName() {
+            return rarityName;
+        }
+
+        public String getDisplayDesc() {
+            return rarityDesc;
+        }
+
     }
 
     public static enum CharacterClass {
-        TANK,
-        HYBRID,
-        CONTROLLER,
-        SUMMONER,
-        HEALER,
-        ASSASIN,
-        DEFENDER,
-        SPEEDSTER,
-        MARKSMAN
+        TANK("Tank", "Tank"),
+        HYBRID("Hybrid", "Hybrid"),
+        CONTROLLER("Controller", "Controller"),
+        SUMMONER("Summoner", "Summoner"),
+        HEALER("Healer", "Healer"),
+        ASSASIN("Assasin", "Assasin"),
+        MARKSMAN("Marksman", "Marksman");
+
+        private String className;
+        private String classDesc;
+
+        CharacterClass(String className, String classDesc) {
+            this.className = className;
+            this.classDesc = classDesc;
+        }
+
+        public String getDisplayName() {
+            return className;
+        }
+
+        public String getDisplayDesc() {
+            return classDesc;
+        }
     }
 
     public static enum CharacterType {
-        SURVIVAL,
-        KILLER,
-        DEFENDER
+        SURVIVAL("Survivals", "Survival"),
+        KILLER("Killers", "Killer"),
+        DEFENDER("Defenders", "Defender");
+
+        private String typeName;
+        private String typeDesc;
+
+        CharacterType(String typeName, String typeDesc) {
+            this.typeName = typeName;
+            this.typeDesc = typeDesc;
+        }
+
+        public String getDisplayName() {
+            return typeName;
+        }
+
+        public String getDisplayDesc() {
+            return typeDesc;
+        }
     }
 
     private static int nextId = 0;
     private int chrId = 0;
 
-    public String chrName;
-    public Title chrTitle;
-    public String chrDescription;
+    private String chrName = "Undefined name";
+    private Title chrTitle;
+    private String chrDescription = "Undefined description";
 
-    // This is chrPower_1
-    // This is chrPower_2
-    // This is chrStarPower
+    private List<CharacterSkinDescription> chrSkins = new ArrayList<>();
+    private CharacterAsset chrAsset = null;
 
-    public List<CharacterSkin> chrSkins = new ArrayList<>();
+    private int chrHealth = 0;
+    private int chrSpeed = 0;
+    private int chrSpeedUp = 0;
+    private int chrStamina = 0;
 
-    public int chrHealth;
-    public int chrSpeed;
-    public int chrSpeedUp;
-    public int chrStamina;
-
-    public CharacterClass chrClass;
-    public CharacterType chrType;
-    public CharacterRarity chrRarity;
+    private CharacterClass chrClass;
+    private CharacterType chrType;
+    private CharacterRarity chrRarity;
 
     private CharacterDescription(Builder builder) {
         this.chrId = ++nextId;
@@ -70,6 +115,7 @@ public class CharacterDescription {
 
         this.chrTitle = builder.chrTitle;
         this.chrSkins = builder.chrSkins;
+        this.chrAsset = builder.chrAsset;
     }
 
     public int getId() {
@@ -112,12 +158,16 @@ public class CharacterDescription {
         return chrType;
     }
 
-    public List<CharacterSkin> getSkins() {
+    public List<CharacterSkinDescription> getSkins() {
         return chrSkins;
     }
 
     public CharacterRarity getRarity() {
         return chrRarity;
+    }
+
+    public CharacterAsset getAsset() {
+        return chrAsset;
     }
 
     public String toString() {
@@ -139,7 +189,8 @@ public class CharacterDescription {
         private CharacterRarity chrRarity;
 
         private Title chrTitle;
-        private List<CharacterSkin> chrSkins = new ArrayList<>();
+        private CharacterAsset chrAsset;
+        private List<CharacterSkinDescription> chrSkins = new ArrayList<>();
 
         public Builder name(String name) {
             this.chrName = name;
@@ -191,8 +242,18 @@ public class CharacterDescription {
             return this;
         }
 
-        public Builder skins(List<CharacterSkin> skins) {
-            this.chrSkins = skins;
+        public Builder skins(List<CharacterSkinDescription> skins) {
+            this.chrSkins.addAll(skins);
+            return this;
+        }
+
+        public Builder skins(CharacterSkinDescription skin) {
+            this.chrSkins.add(skin);
+            return this;
+        }
+
+        public Builder asset(CharacterAsset asset) {
+            this.chrAsset = asset;
             return this;
         }
 

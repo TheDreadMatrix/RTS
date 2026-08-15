@@ -1,4 +1,4 @@
-package com.returntosirandora.characters.titles;
+package com.returntosirandora.titles;
 
 public class Title {
     public static enum TitleType {
@@ -6,8 +6,8 @@ public class Title {
         RARE
     }
 
-    String title;
-    TitleType titleType;
+    private String title;
+    private TitleType titleType;
 
     public Title(String title, TitleType titleType) {
         this.title = title;
@@ -17,5 +17,13 @@ public class Title {
     public Title(String title) {
         this.title = title;
         this.titleType = TitleType.BRAWLER;
+    }
+
+    public String getTitleName() {
+        return title;
+    }
+
+    public TitleType getTitleType() {
+        return titleType;
     }
 }

@@ -1,4 +1,4 @@
-package com.returntosirandora.characters;
+package com.returntosirandora.characters.logic;
 
 public class Character {
 
