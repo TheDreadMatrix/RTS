@@ -7,7 +7,7 @@ import java.util.Map;
 import java.util.function.Supplier;
 
 import com.badlogic.gdx.Gdx;
-import com.returntosirandora.Johnson;
+import com.returntosirandora.Bootloader;
 import com.returntosirandora.core.protocol.ApplicationInterface;
 import com.returntosirandora.core.protocol.SceneInterface;
 import com.returntosirandora.core.protocol.runtime.RouterInterface;
@@ -46,15 +46,13 @@ public class RTSRouter implements RouterInterface {
     public RTSRouter(ApplicationInterface game) {
         this.game = game;
 
-        Johnson joshua = new Johnson(game.getPaths()._forInternal("scenes.json")).loadData();
+        StartScene = Bootloader.START_SCENE;
 
-        StartScene = joshua.getString("StartScene");
+        Map<String, String> scenes = Bootloader.SCENES;
 
-        Map<?, ?> scenes = joshua.getDict("Scenes");
-
-        for (Map.Entry<?, ?> entry : scenes.entrySet()) {
-            String key = (String) entry.getKey();
-            String value = (String) entry.getValue();
+        for (Map.Entry<String, String> entry : scenes.entrySet()) {
+            String key = entry.getKey();
+            String value = entry.getValue();
 
             registerScene(key, value);
         }

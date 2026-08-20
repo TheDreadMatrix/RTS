@@ -9,18 +9,23 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.scenes.scene2d.Stage;
-import com.badlogic.gdx.utils.viewport.FitViewport;
+import com.badlogic.gdx.utils.viewport.ExtendViewport;
 
 public class BaseScene implements SceneInterface {
     String sceneName;
     boolean isDebug = false;
+
+    protected static final float MIN_WORLD_WIDTH = 800f;
+    protected static final float MIN_WORLD_HEIGHT = 400f;
+    protected static final float MAX_WORLD_WIDTH = 1600f;
+    protected static final float MAX_WORLD_HEIGHT = 720f;
 
     ApplicationInterface game;
     PathsInterface paths;
     RouterInterface router;
 
     AssetManager assets;
-    FitViewport mainViewport;
+    ExtendViewport mainViewport;
     Stage mainStage;
 
     public BaseScene _initScene(ApplicationInterface game, String sceneName) {
@@ -31,7 +36,7 @@ public class BaseScene implements SceneInterface {
         router = game.getRouter();
         assets = game.getAssets();
 
-        mainViewport = new FitViewport(800, 600);
+        mainViewport = new ExtendViewport(MIN_WORLD_WIDTH, MIN_WORLD_HEIGHT, MAX_WORLD_WIDTH, MAX_WORLD_HEIGHT);
 
         mainStage = new Stage(mainViewport);
 

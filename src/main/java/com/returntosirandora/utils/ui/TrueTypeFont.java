@@ -1,4 +1,4 @@
-package com.returntosirandora.utils;
+package com.returntosirandora.utils.ui;
 
 import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.Color;
@@ -22,8 +22,7 @@ public class TrueTypeFont {
         return font;
     }
 
-    public static BitmapFont getFont(FileHandle fontPath, int fontSize, int backFontWidth, Color fontColor,
-            Color backFontColor) {
+    public static BitmapFont getFont(FileHandle fontPath, int fontSize, Color fontColor, Color backFontColor) {
 
         FreeTypeFontGenerator generator = new FreeTypeFontGenerator(fontPath);
 
@@ -31,7 +30,7 @@ public class TrueTypeFont {
 
         parameter.size = fontSize;
         parameter.color = fontColor;
-        parameter.borderWidth = backFontWidth;
+        parameter.borderWidth = 2f;
         parameter.borderColor = backFontColor;
 
         BitmapFont font = generator.generateFont(parameter);

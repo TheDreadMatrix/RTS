@@ -1,8 +1,16 @@
 package com.returntosirandora.characters.logic;
 
+import com.returntosirandora.characters.defenition.CharacterDescription;
+
 public class Character {
 
-    public void create() {
+    protected int health;
+
+    protected int speed;
+    protected int speedUp;
+    protected int stamina;
+
+    public void create(CharacterDescription character) {
 
     }
 

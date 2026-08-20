@@ -99,6 +99,7 @@ public class RTSApplication extends ApplicationAdapter implements ApplicationInt
     @Override
     public void dispose() {
         assets.dispose();
+
     }
 
 }

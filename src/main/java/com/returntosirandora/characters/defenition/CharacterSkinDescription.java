@@ -1,5 +1,6 @@
 package com.returntosirandora.characters.defenition;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.returntosirandora.characters.defenition.CharacterAsset.SkinAsset;
@@ -66,7 +67,7 @@ public class CharacterSkinDescription {
 
         private Boolean isExclusive = false;
 
-        private List<SkinCategory> chrSkinCategories;
+        private List<SkinCategory> chrSkinCategories = new ArrayList<>();
         private SkinAsset chrSkinAsset;
 
         public Builder name(String chrSkinName) {
@@ -90,7 +91,12 @@ public class CharacterSkinDescription {
         }
 
         public Builder categories(List<SkinCategory> chrSkinCategories) {
-            this.chrSkinCategories = chrSkinCategories;
+            this.chrSkinCategories.addAll(chrSkinCategories);
+            return this;
+        }
+
+        public Builder categories(SkinCategory chrSkinCategory) {
+            this.chrSkinCategories.add(chrSkinCategory);
             return this;
         }
 

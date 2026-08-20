@@ -36,7 +36,7 @@ application {
     mainClass.set("Main")
 }
 
-tasks.register<JavaExec>("packTextures") {
+tasks.register<JavaExec>("pack") {
     group = "assets"
     description = "Packs PNG textures into a LibGDX TextureAtlas"
 

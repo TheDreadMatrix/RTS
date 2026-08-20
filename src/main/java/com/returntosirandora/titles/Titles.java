@@ -29,10 +29,10 @@ public class Titles {
     public static final Title TITLE_WILL_0 = new Title("Like the wind");
     public static final Title TITLE_GROOVY_0 = new Title("Engineer");
 
-    public static final Title TITLE_REMI_0 = new Title("Nothing");
-    public static final Title TITLE_SUMMON_0 = new Title("Nothing");
-    public static final Title TITLE_LUMI_0 = new Title("Nothing");
-    public static final Title TITLE_JULIAN_0 = new Title("Nothing");
-    public static final Title TITLE_OMNI_REST_0 = new Title("Nothing");
+    public static final Title TITLE_REMI_0 = new Title("Take that!");
+    public static final Title TITLE_SUMMON_0 = new Title("Negligence is my business");
+    public static final Title TITLE_LUMI_0 = new Title("Low level support");
+    public static final Title TITLE_JULIAN_0 = new Title("Athlete");
+    public static final Title TITLE_OMNI_REST_0 = new Title("The Great King");
 
 }

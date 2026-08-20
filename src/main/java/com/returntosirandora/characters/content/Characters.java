@@ -20,6 +20,7 @@ Character:
         class - Which class for Character
         type - Who is it? Killer or Survival
         title - Title for battle card
+        asset - sprites
         skins - skins for character
 
 Killers: 
@@ -30,8 +31,8 @@ Killers:
 
 
 Survivals:
-        1. Maven - common
-        2. Will, Groovy - rare
+        1. Will - common
+        2. Maven, Groovy - rare
         3. Summon, Lumi, Julian - epic
         4. OmniRest - legendary
 
@@ -57,7 +58,7 @@ public class Characters {
                         .characterType(CharacterType.KILLER)
                         .rarity(CharacterRarity.COMMON)
                         .title(Titles.TILTE_FRED_0)
-                        .skins(CharacterSkins.FRED_SKINS)
+                        .skins(CharacterSkins.FRED_SKIN_0)
                         .asset(new CharacterAsset("atlas/killers/fred/", "portrait/killers/fred/"))
                         .build();
 
@@ -160,6 +161,7 @@ public class Characters {
                         .characterType(CharacterType.KILLER)
                         .rarity(CharacterRarity.LEGENDARY)
                         .title(Titles.TITLE_DREAD_MATRIX_0)
+                        .skins(CharacterSkins.DREAD_MATRIX_SKINS)
                         .build();
 
         public static final CharacterDescription ALGOL = new CharacterDescription.Builder()
@@ -173,6 +175,98 @@ public class Characters {
                         .characterType(CharacterType.KILLER)
                         .rarity(CharacterRarity.LEGENDARY)
                         .title(Titles.TITLE_ALGOL_0)
+                        .build();
+
+        // Survivals
+        public static final CharacterDescription WILL = new CharacterDescription.Builder()
+                        .name("Will")
+                        .description("Will")
+                        .health(700)
+                        .speed(130)
+                        .speedUp(170)
+                        .stamina(200)
+                        .characterClass(CharacterClass.CONTROLLER)
+                        .characterType(CharacterType.SURVIVAL)
+                        .rarity(CharacterRarity.COMMON)
+                        .title(Titles.TITLE_WILL_0)
+                        .build();
+
+        public static final CharacterDescription MAVEN = new CharacterDescription.Builder()
+                        .name("Maven")
+                        .description("Maven")
+                        .health(500)
+                        .speed(135)
+                        .speedUp(175)
+                        .stamina(170)
+                        .characterClass(CharacterClass.CONTROLLER)
+                        .characterType(CharacterType.SURVIVAL)
+                        .rarity(CharacterRarity.RARE)
+                        .title(Titles.TITLE_MAVEN_0)
+                        .build();
+
+        public static final CharacterDescription GROOVY = new CharacterDescription.Builder()
+                        .name("Groovy")
+                        .description("Groovy")
+                        .health(900)
+                        .speed(100)
+                        .speedUp(150)
+                        .stamina(50)
+                        .characterClass(CharacterClass.TANK)
+                        .characterType(CharacterType.SURVIVAL)
+                        .rarity(CharacterRarity.RARE)
+                        .title(Titles.TITLE_GROOVY_0)
+                        .build();
+
+        public static final CharacterDescription SUMMON = new CharacterDescription.Builder()
+                        .name("Summon")
+                        .description("Summon")
+                        .health(750)
+                        .speed(130)
+                        .speedUp(170)
+                        .stamina(80)
+                        .characterClass(CharacterClass.SUMMONER)
+                        .characterType(CharacterType.SURVIVAL)
+                        .rarity(CharacterRarity.EPIC)
+                        .title(Titles.TITLE_SUMMON_0)
+                        .build();
+
+        public static final CharacterDescription LUMI = new CharacterDescription.Builder()
+                        .name("Lumi")
+                        .description("Lumi")
+                        .health(450)
+                        .speed(140)
+                        .speedUp(180)
+                        .stamina(120)
+                        .characterClass(CharacterClass.HEALER)
+                        .characterType(CharacterType.SURVIVAL)
+                        .rarity(CharacterRarity.EPIC)
+                        .title(Titles.TITLE_LUMI_0)
+                        .build();
+
+        public static final CharacterDescription JULIAN = new CharacterDescription.Builder()
+                        .name("Julian")
+                        .description("Julian")
+                        .health(780)
+                        .speed(170)
+                        .speedUp(210)
+                        .stamina(180)
+                        .characterClass(CharacterClass.HYBRID)
+                        .characterType(CharacterType.SURVIVAL)
+                        .rarity(CharacterRarity.EPIC)
+                        .title(Titles.TITLE_JULIAN_0)
+                        .build();
+
+        public static final CharacterDescription OMNI_REST = new CharacterDescription.Builder()
+                        .name("Omni Rest")
+                        .description("Omni Rest")
+                        .health(1500)
+                        .speed(100)
+                        .speedUp(150)
+                        .stamina(30)
+                        .characterClass(CharacterClass.TANK)
+                        .characterType(CharacterType.SURVIVAL)
+                        .rarity(CharacterRarity.LEGENDARY)
+                        .title(Titles.TITLE_OMNI_REST_0)
                         .build();
 
         // Defenders
