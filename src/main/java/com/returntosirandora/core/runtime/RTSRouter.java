@@ -30,7 +30,7 @@ public class RTSRouter implements RouterInterface {
             Class<? extends SceneInterface> sceneClass = Class.forName(className).asSubclass(SceneInterface.class);
             sceneDict.put(key, () -> {
                 try {
-                    return sceneClass.getDeclaredConstructor().newInstance()._initScene(game, key);
+                    return sceneClass.getDeclaredConstructor().newInstance().initScene(game);
                 } catch (Exception exception) {
                     throw new RuntimeException("Failed to create scene: " + className, exception);
                 }
@@ -66,7 +66,7 @@ public class RTSRouter implements RouterInterface {
 
         currentScene = sceneDict.get(currentName).get();
 
-        currentScene.create();
+        currentScene.create(currentName);
     }
 
     @Override
@@ -93,7 +93,7 @@ public class RTSRouter implements RouterInterface {
 
             currentScene = sceneDict.get(whichScene).get();
 
-            currentScene.create();
+            currentScene.create(currentName);
 
         }
 
@@ -102,14 +102,6 @@ public class RTSRouter implements RouterInterface {
 
     public void resize(int width, int height) {
         currentScene.resize(width, height);
-    }
-
-    public void pause() {
-        currentScene.pause();
-    }
-
-    public void resume() {
-        currentScene.resume();
     }
 
     public void render() {

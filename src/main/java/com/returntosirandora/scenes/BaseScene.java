@@ -2,6 +2,7 @@ package com.returntosirandora.scenes;
 
 import com.returntosirandora.core.protocol.ApplicationInterface;
 import com.returntosirandora.core.protocol.SceneInterface;
+import com.returntosirandora.core.protocol.SettingsInterface;
 import com.returntosirandora.core.protocol.runtime.PathsInterface;
 import com.returntosirandora.core.protocol.runtime.RouterInterface;
 
@@ -12,33 +13,26 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.viewport.ExtendViewport;
 
 public class BaseScene implements SceneInterface {
-    String sceneName;
     boolean isDebug = false;
-
-    protected static final float MIN_WORLD_WIDTH = 800f;
-    protected static final float MIN_WORLD_HEIGHT = 400f;
-    protected static final float MAX_WORLD_WIDTH = 1600f;
-    protected static final float MAX_WORLD_HEIGHT = 720f;
 
     ApplicationInterface game;
     PathsInterface paths;
     RouterInterface router;
+    SettingsInterface settings;
 
     AssetManager assets;
-    ExtendViewport mainViewport;
+
     Stage mainStage;
 
-    public BaseScene _initScene(ApplicationInterface game, String sceneName) {
+    public BaseScene initScene(ApplicationInterface game) {
         this.game = game;
-        this.sceneName = sceneName;
 
         paths = game.getPaths();
         router = game.getRouter();
         assets = game.getAssets();
+        settings = game.getSettings();
 
-        mainViewport = new ExtendViewport(MIN_WORLD_WIDTH, MIN_WORLD_HEIGHT, MAX_WORLD_WIDTH, MAX_WORLD_HEIGHT);
-
-        mainStage = new Stage(mainViewport);
+        mainStage = new Stage(new ExtendViewport(800f, 400f, 1600f, 720f));
 
         Gdx.input.setInputProcessor(mainStage);
 
@@ -47,7 +41,7 @@ public class BaseScene implements SceneInterface {
     }
 
     @Override
-    public void create() {
+    public void create(String sceneName) {
 
     }
 
@@ -64,16 +58,6 @@ public class BaseScene implements SceneInterface {
     @Override
     public void resize(int width, int height) {
         mainStage.getViewport().update(width, height, true);
-    }
-
-    @Override
-    public void pause() {
-
-    }
-
-    @Override
-    public void resume() {
-
     }
 
     @Override

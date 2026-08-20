@@ -4,7 +4,7 @@ public class LoadingScene {
 
         public static class LoadingGame extends BaseScene {
                 @Override
-                public void create() {
+                public void create(String sceneName) {
 
                 }
 
@@ -33,7 +33,7 @@ public class LoadingScene {
 
         public static class LoadingMenu extends BaseScene {
                 @Override
-                public void create() {
+                public void create(String sceneName) {
 
                 }
 

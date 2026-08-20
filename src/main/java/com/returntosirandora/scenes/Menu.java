@@ -30,7 +30,7 @@ public class Menu extends BaseScene {
     Music MUSIC_MENU;
 
     @Override
-    public void create() {
+    public void create(String sceneName) {
 
         batch = new SpriteBatch();
         TextureAtlas atlas = new TextureAtlas(paths.getImages("atlas/test/test.atlas"));

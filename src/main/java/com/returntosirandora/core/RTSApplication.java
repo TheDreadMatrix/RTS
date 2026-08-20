@@ -2,44 +2,30 @@ package com.returntosirandora.core;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.ApplicationAdapter;
-import com.badlogic.gdx.backends.lwjgl3.Lwjgl3ApplicationConfiguration;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.utils.ScreenUtils;
-
 import com.returntosirandora.core.protocol.ApplicationInterface;
+import com.returntosirandora.core.protocol.SettingsInterface;
 import com.returntosirandora.core.runtime.RTSPath;
 import com.returntosirandora.core.runtime.RTSRouter;
-import com.returntosirandora.Johnson;
 
 public class RTSApplication extends ApplicationAdapter implements ApplicationInterface {
 
-    public RTSPath paths;
-    public RTSRouter router;
-    public AssetManager assets;
+    private RTSPath paths;
+    private RTSRouter router;
+    private AssetManager assets;
+    private SettingsInterface settings;
 
-    public static Lwjgl3ApplicationConfiguration _giveConfiguration() {
-
-        // Creating configuration
-        Johnson josh = new Johnson("config/settings.json").loadData();
-
-        Lwjgl3ApplicationConfiguration config = new Lwjgl3ApplicationConfiguration();
-
-        config.setTitle("Return to Sirandora");
-        config.setWindowIcon("assets/icon.png");
-
-        config.setPauseWhenLostFocus(false);
-
-        config.setWindowedMode(josh.getInt("window.width", 800), josh.getInt("window.height", 600));
-        config.setWindowSizeLimits(799, 599, 10000, 10000);
-
-        config.setIdleFPS(10);
-        config.setForegroundFPS(josh.getInt("window.fps", 60));
-        config.useVsync(josh.getBoolean("window.vsync", false));
-
-        return config;
+    public RTSApplication(SettingsInterface settings) {
+        this.settings = settings;
     }
 
     // Game methods
+    @Override
+    public SettingsInterface getSettings() {
+        return settings;
+    }
+
     @Override
     public RTSPath getPaths() {
         return paths;
@@ -72,18 +58,8 @@ public class RTSApplication extends ApplicationAdapter implements ApplicationInt
     }
 
     @Override
-    public void pause() {
-        router.pause();
-    }
-
-    @Override
     public void clear(float r, float g, float b) {
         ScreenUtils.clear(r, g, b, 1.0f);
-    }
-
-    @Override
-    public void resume() {
-        router.resume();
     }
 
     @Override
@@ -99,7 +75,6 @@ public class RTSApplication extends ApplicationAdapter implements ApplicationInt
     @Override
     public void dispose() {
         assets.dispose();
-
     }
 
 }

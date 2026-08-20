@@ -11,5 +11,7 @@ public interface ApplicationInterface {
 
     public AssetManager getAssets();
 
+    public SettingsInterface getSettings();
+
     public void clear(float r, float g, float b);
 }

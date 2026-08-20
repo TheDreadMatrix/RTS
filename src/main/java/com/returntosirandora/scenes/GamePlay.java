@@ -2,7 +2,7 @@ package com.returntosirandora.scenes;
 
 public class GamePlay extends BaseScene {
     @Override
-    public void create() {
+    public void create(String sceneName) {
 
     }
 

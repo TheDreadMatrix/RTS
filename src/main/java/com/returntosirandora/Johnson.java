@@ -16,7 +16,9 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 
-public class Johnson {
+import com.returntosirandora.core.protocol.SettingsInterface;
+
+public class Johnson implements SettingsInterface {
 
     private Path filePath;
     private FileHandle gdxFile;
