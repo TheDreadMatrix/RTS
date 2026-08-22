@@ -3,7 +3,7 @@ package com.returntosirandora.characters.content;
 import java.util.List;
 
 import com.returntosirandora.characters.defenition.CharacterSkinDescription;
-import com.returntosirandora.characters.defenition.CharacterSkinDescription.SkinCategory;
+import com.returntosirandora.characters.enums.SkinCategory;
 import com.returntosirandora.characters.defenition.CharacterAsset.SkinAsset;
 
 public class CharacterSkins {

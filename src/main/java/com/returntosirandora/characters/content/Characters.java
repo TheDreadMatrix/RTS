@@ -1,11 +1,11 @@
 package com.returntosirandora.characters.content;
 
 import com.returntosirandora.characters.defenition.CharacterDescription;
-import com.returntosirandora.characters.defenition.CharacterDescription.CharacterClass;
-import com.returntosirandora.characters.defenition.CharacterDescription.CharacterRarity;
-import com.returntosirandora.characters.defenition.CharacterDescription.CharacterType;
+import com.returntosirandora.characters.enums.CharacterClass;
+import com.returntosirandora.characters.enums.CharacterRarity;
+import com.returntosirandora.characters.enums.CharacterType;
+import com.returntosirandora.content.titles.Titles;
 import com.returntosirandora.characters.defenition.CharacterAsset;
-import com.returntosirandora.titles.Titles;
 
 /*
 Return to Sirandora characters

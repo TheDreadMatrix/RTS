@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Bootloader {
-    public static final String START_SCENE = "Menu";
+    public static final String START_SCENE = "Gameplay";
     public static final HashMap<String, String> SCENES = new HashMap<>(Map.of(
             "Menu", "com.returntosirandora.scenes.Menu",
             "LoadingGame", "com.returntosirandora.scenes.LoadingScene$LoadingGame",

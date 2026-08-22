@@ -305,7 +305,7 @@ public class BrawlersSubScene extends BaseSubScene {
                                  */
 
                                 redirect.accept(
-                                                "brawler/" + character.getId());
+                                                "brawler/" + character.getName());
                         }
                 };
         }

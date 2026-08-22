@@ -1,7 +1,11 @@
 {
     "window.width": 800,
     "window.height": 600,
+    
     "window.vsync": false,
-    "window.fps": 120
+    "window.fps": 120,
+
+    "sound.volume": 1.0,
+    "music.volume": 1.0
 
 }

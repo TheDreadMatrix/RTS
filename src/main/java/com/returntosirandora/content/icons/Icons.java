@@ -1,4 +1,4 @@
-package com.returntosirandora.icons;
+package com.returntosirandora.content.icons;
 
 public class Icons {
 

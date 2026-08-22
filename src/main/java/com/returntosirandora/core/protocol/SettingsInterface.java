@@ -1,15 +1,13 @@
 package com.returntosirandora.core.protocol;
 
 public interface SettingsInterface {
-    public int getInt(String key);
+    public <T> T get(String key, Class<T> type);
 
-    public int getInt(String key, int defaultValue);
+    public <T> T get(String key, Class<T> type, T defaultValue);
 
-    public float getFloat(String key);
+    public void set(String key, Object value);
 
-    public float getFloat(String key, float defaultValue);
+    public <T> T getSet(String key, Class<T> type, T defaultValue);
 
-    public boolean getBoolean(String key);
-
-    public boolean getBoolean(String key, boolean defaultValue);
+    public void saveData();
 }

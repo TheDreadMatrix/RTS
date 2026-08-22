@@ -3,27 +3,10 @@ package com.returntosirandora.characters.defenition;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.returntosirandora.characters.enums.SkinCategory;
 import com.returntosirandora.characters.defenition.CharacterAsset.SkinAsset;
 
 public class CharacterSkinDescription {
-
-    public static enum SkinCategory {
-        COMMON("Common"),
-        RARE("Rare"),
-        EPIC("Epic");
-
-        private String skinName;
-
-        SkinCategory(String skinName) {
-            this.skinName = skinName;
-        }
-
-        public String getDisplayName() {
-            return skinName;
-        }
-
-    }
-
     private String chrSkinName;
     private int chrSkinCost;
 

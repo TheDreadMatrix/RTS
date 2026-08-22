@@ -9,6 +9,7 @@ import com.returntosirandora.core.protocol.SettingsInterface;
 import com.returntosirandora.core.runtime.RTSPath;
 import com.returntosirandora.core.runtime.RTSRouter;
 
+// Stage debug util
 public class RTSApplication extends ApplicationAdapter implements ApplicationInterface {
 
     private RTSPath paths;
@@ -20,7 +21,6 @@ public class RTSApplication extends ApplicationAdapter implements ApplicationInt
         this.settings = settings;
     }
 
-    // Game methods
     @Override
     public SettingsInterface getSettings() {
         return settings;

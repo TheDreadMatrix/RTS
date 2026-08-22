@@ -4,10 +4,6 @@ import java.util.HashMap;
 import java.util.function.Supplier;
 
 import com.badlogic.gdx.audio.Music;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.graphics.g2d.TextureAtlas;
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.badlogic.gdx.graphics.g2d.Animation;
 import com.returntosirandora.subscenes.BaseSubScene;
 import com.returntosirandora.subscenes.menu.MainSubScene;
 import com.returntosirandora.subscenes.menu.ProfileSubScene;
@@ -22,20 +18,10 @@ public class Menu extends BaseScene {
     String currentName = "main";
     String stateMainScene = "main";
 
-    float stateTime = 0f;
-
-    SpriteBatch batch;
-    Animation<TextureRegion> animation;
-
     Music MUSIC_MENU;
 
     @Override
     public void create(String sceneName) {
-
-        batch = new SpriteBatch();
-        TextureAtlas atlas = new TextureAtlas(paths.getImages("atlas/test/test.atlas"));
-
-        animation = new Animation<>(0.1f, atlas.findRegions("icons"), Animation.PlayMode.LOOP);
 
         // Sub scenes
         subSceneDict.put("main", () -> new MainSubScene().initSubScene(game, this::redirect));
@@ -61,7 +47,6 @@ public class Menu extends BaseScene {
     @Override
     public void update(float deltaTime) {
         String stateScene = currentName;
-        stateTime += deltaTime;
 
         if (!currentName.equals(stateMainScene)) {
             currentSubScene.dispose();
@@ -84,19 +69,11 @@ public class Menu extends BaseScene {
     public void render() {
         super.render();
 
-        TextureRegion frame = animation.getKeyFrame(stateTime);
-
-        batch.begin();
-        batch.draw(frame, 100, 100);
-        batch.end();
-
     }
 
     @Override
     public void end() {
         super.end();
-
-        batch.dispose();
 
         MUSIC_MENU.dispose();
     }

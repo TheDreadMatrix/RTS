@@ -1,6 +1,6 @@
-package com.returntosirandora.titles;
+package com.returntosirandora.content.titles;
 
-import com.returntosirandora.titles.Title.TitleType;
+import com.returntosirandora.content.titles.Title.TitleType;
 
 public class Titles {
 

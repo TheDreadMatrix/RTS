@@ -2,86 +2,14 @@ package com.returntosirandora.characters.defenition;
 
 import java.util.List;
 
-import com.returntosirandora.titles.Title;
+import com.returntosirandora.characters.enums.CharacterRarity;
+import com.returntosirandora.characters.enums.CharacterClass;
+import com.returntosirandora.characters.enums.CharacterType;
+import com.returntosirandora.content.titles.Title;
 
 import java.util.ArrayList;
 
 public class CharacterDescription {
-    public static enum CharacterRarity {
-        COMMON("Common", "Common Rarity"),
-        RARE("Rare", "Rare Rarity"),
-        EPIC("Epic", "Epic Rarity"),
-        LEGENDARY("Legendary", "Legendary Rarity");
-
-        private String rarityName;
-        private String rarityDesc;
-
-        CharacterRarity(String rarityName, String rarityDesc) {
-            this.rarityName = rarityName;
-            this.rarityDesc = rarityDesc;
-        }
-
-        public String getDisplayName() {
-            return rarityName;
-        }
-
-        public String getDisplayDesc() {
-            return rarityDesc;
-        }
-
-    }
-
-    public static enum CharacterClass {
-        TANK("Tank", "Tank"),
-        HYBRID("Hybrid", "Hybrid"),
-        CONTROLLER("Controller", "Controller"),
-        SUMMONER("Summoner", "Summoner"),
-        HEALER("Healer", "Healer"),
-        ASSASIN("Assasin", "Assasin"),
-        MARKSMAN("Marksman", "Marksman");
-
-        private String className;
-        private String classDesc;
-
-        CharacterClass(String className, String classDesc) {
-            this.className = className;
-            this.classDesc = classDesc;
-        }
-
-        public String getDisplayName() {
-            return className;
-        }
-
-        public String getDisplayDesc() {
-            return classDesc;
-        }
-    }
-
-    public static enum CharacterType {
-        SURVIVAL("Survivals", "Survival"),
-        KILLER("Killers", "Killer"),
-        DEFENDER("Defenders", "Defender");
-
-        private String typeName;
-        private String typeDesc;
-
-        CharacterType(String typeName, String typeDesc) {
-            this.typeName = typeName;
-            this.typeDesc = typeDesc;
-        }
-
-        public String getDisplayName() {
-            return typeName;
-        }
-
-        public String getDisplayDesc() {
-            return typeDesc;
-        }
-    }
-
-    private static int nextId = 0;
-    private int chrId = 0;
-
     private String chrName = "Undefined name";
     private Title chrTitle;
     private String chrDescription = "Undefined description";
@@ -92,6 +20,7 @@ public class CharacterDescription {
     private int chrHealth = 0;
     private int chrSpeed = 0;
     private int chrSpeedUp = 0;
+    private int chrDamage = 0;
     private int chrStamina = 0;
 
     private CharacterClass chrClass;
@@ -99,7 +28,6 @@ public class CharacterDescription {
     private CharacterRarity chrRarity;
 
     private CharacterDescription(Builder builder) {
-        this.chrId = ++nextId;
 
         this.chrName = builder.chrName;
         this.chrDescription = builder.chrDescription;
@@ -108,6 +36,7 @@ public class CharacterDescription {
         this.chrSpeed = builder.chrSpeed;
         this.chrSpeedUp = builder.chrSpeedUp;
         this.chrStamina = builder.chrStamina;
+        this.chrDamage = builder.chrDamage;
 
         this.chrClass = builder.chrClass;
         this.chrType = builder.chrType;
@@ -116,10 +45,6 @@ public class CharacterDescription {
         this.chrTitle = builder.chrTitle;
         this.chrSkins = builder.chrSkins;
         this.chrAsset = builder.chrAsset;
-    }
-
-    public int getId() {
-        return chrId;
     }
 
     public String getName() {
@@ -144,6 +69,10 @@ public class CharacterDescription {
 
     public int getStamina() {
         return chrStamina;
+    }
+
+    public int getDamage() {
+        return chrDamage;
     }
 
     public Title getTitle() {
@@ -183,6 +112,7 @@ public class CharacterDescription {
         private int chrSpeed;
         private int chrSpeedUp;
         private int chrStamina;
+        private int chrDamage;
 
         private CharacterClass chrClass;
         private CharacterType chrType;
@@ -204,6 +134,11 @@ public class CharacterDescription {
 
         public Builder health(int health) {
             this.chrHealth = health;
+            return this;
+        }
+
+        public Builder damage(int damage) {
+            this.chrDamage = damage;
             return this;
         }
 

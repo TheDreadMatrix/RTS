@@ -15,18 +15,15 @@ public class DesktopLaucher {
 
                 config.setWindowIcon("assets/icon16.png", "assets/icon32.png", "assets/icon64.png");
 
-                config.setWindowedMode(
-                                settings.getInt("window.width", 800),
-                                settings.getInt("window.height", 600));
+                config.setWindowedMode(settings.get("window.width", Integer.class, 800),
+                                settings.get("window.height", Integer.class, 600));
 
                 config.setWindowSizeLimits(799, 599, 10000, 10000);
 
                 config.setIdleFPS(10);
-                config.setForegroundFPS(
-                                settings.getInt("window.fps", 60));
+                config.setForegroundFPS(settings.get("window.fps", Integer.class, 60));
 
-                config.useVsync(
-                                settings.getBoolean("window.vsync", false));
+                config.useVsync(settings.get("window.vsync", Boolean.class, false));
 
                 new Lwjgl3Application(new RTSApplication(settings), config);
         }

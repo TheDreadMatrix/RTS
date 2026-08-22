@@ -1,4 +1,4 @@
-package com.returntosirandora.titles;
+package com.returntosirandora.content.titles;
 
 public class Title {
     public static enum TitleType {

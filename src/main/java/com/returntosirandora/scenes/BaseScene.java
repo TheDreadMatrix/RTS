@@ -7,14 +7,11 @@ import com.returntosirandora.core.protocol.runtime.PathsInterface;
 import com.returntosirandora.core.protocol.runtime.RouterInterface;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Input;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.scenes.scene2d.Stage;
-import com.badlogic.gdx.utils.viewport.ExtendViewport;
+import com.badlogic.gdx.utils.viewport.ScreenViewport;
 
 public class BaseScene implements SceneInterface {
-    boolean isDebug = false;
-
     ApplicationInterface game;
     PathsInterface paths;
     RouterInterface router;
@@ -32,7 +29,7 @@ public class BaseScene implements SceneInterface {
         assets = game.getAssets();
         settings = game.getSettings();
 
-        mainStage = new Stage(new ExtendViewport(800f, 400f, 1600f, 720f));
+        mainStage = new Stage(new ScreenViewport());
 
         Gdx.input.setInputProcessor(mainStage);
 
@@ -49,10 +46,6 @@ public class BaseScene implements SceneInterface {
     public void update(float deltaTime) {
         mainStage.act(deltaTime);
 
-        if (Gdx.input.isKeyJustPressed(Input.Keys.F3)) {
-            isDebug = !isDebug;
-            mainStage.setDebugAll(isDebug);
-        }
     }
 
     @Override

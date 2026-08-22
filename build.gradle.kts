@@ -5,7 +5,7 @@ plugins {
 
 sourceSets {
     create("tools") {
-        java.srcDir("src/tools/src/main/java")
+        java.srcDir("src/tools/java")
     }
 }
 
@@ -43,5 +43,5 @@ tasks.register<JavaExec>("pack") {
     dependsOn("toolsClasses")
 
     classpath = sourceSets["tools"].runtimeClasspath
-    mainClass.set("tools.TexturePackerTool")
+    mainClass.set("TexturePackerTool")
 }
